@@ -1,0 +1,40 @@
+MRSA – der resistente Gegner
+
+**MRSA ist** ***Staphylococcus aureus*** **mit einer wichtigen Besonderheit: Viele gängige Antibiotika wirken nicht mehr. Dadurch können Infektionen schwieriger zu behandeln sein. MRSA= Methicillin-resistenter** ***Staphylococcus aureus***
+🛡️ Was bedeutet resistent?
+- Resistent heißt, dass bestimmte Antibiotika gegen MRSA nicht mehr wirken.
+- Bei MRSA betrifft das viele gängige Antibiotika, vor allem Penicilline und verwandte Mittel.
+💊 Warum ist MRSA problematisch?
+- Bei der Behandlung stehen weniger Antibiotika zur Auswahl.
+- Eine MRSA-Infektion ist nicht unheilbar: die Behandlung ist schwieriger und Antibiotika müssen gezielt ausgewählt werden.
+- Ärzte können bakterielle Infektionen immer schlechter behandeln. Das liegt an zunehmenden Antibiotikaresistenzen. Gleichzeitig werden kaum neue Antibiotika entwickelt.
+🏥 Vorkommen
+- MRSA kommt in Krankenhäusern und auch außerhalb davon vor.
+- Offene Wunden oder ein geschwächtes Immunsystem können eine Infektion begünstigen.
+- Übertragung ist unter anderem durch direkten Kontakt möglich.
+🧬 Wie entstehen Resistenzen?
+- Durch zufällige Veränderungen im Erbgut (Mutationen) können einzelne Bakterien gegen ein Antibiotikum unempfindlich werden.
+- Bei einer Behandlung sterben nur die empfindlichen Bakterien ab. Die resistenten überleben und vermehren sich weiter.
+- Resistenzen können auch direkt an andere Bakterien übertragen werden.
+- Wer Antibiotika unnötig oder falsch einsetzt, fördert die Ausbreitung von Antibiotikaresistenzen.
+⚠️ Besonderheit
+- MRSA ist nicht automatisch aggressiver als anderer *S. aureus*.
+- MRSA kann Menschen zunächst unbemerkt besiedeln.
+- Das Hauptproblem ist die eingeschränkte Auswahl wirksamer Medikamente.
+Kleines Quiz
+1. Wofür steht das „R“ in MRSA?
+A) Resistent ✅
+B) Reaktiv
+C) Riesig
+D) Reproduzierend
+2. Warum ist MRSA schwieriger zu behandeln?
+A) Viele Antibiotika wirken nicht mehr ✅
+B) Es gibt gar keine Medikamente
+C) MRSA ist ein Virus
+D) Es lebt nur im Blut
+3. Was kann die Ausbreitung von Resistenzen begünstigen?
+A) Unnötiger oder falscher Antibiotikaeinsatz ✅
+B) Händewaschen
+C) Schlaf
+D) Kälte
+Quellen: CDC – MRSA Basics; CDC – Laboratory Testing for MRSA; WHO – Antimicrobial Resistance.

@@ -1,0 +1,34 @@
+Phage – der Bakterienjäger
+
+**Bakteriophagen – kurz Phagen – sind Viren, die Bakterien infizieren. Viele sind sehr spezialisiert und greifen nur bestimmte Bakterien oder Stämme an.**
+🎯 Zielsuche
+- Ein Phage muss zuerst ein passendes Bakterium erkennen und daran binden.
+- Passt der Phage nicht zum Bakterium, kann er nicht binden und nicht infizieren.
+🧬 Angriff
+- Der Phage schleust sein Erbgut in das Bakterium ein.
+- Phagen vermehren sich im Bakterium und zerstören die Bakterienzelle am Ende.
+⚔️ Gegen resistente Bakterien
+- Phagen können auch antibiotikaresistente Bakterien angreifen.
+- Deshalb werden sie als mögliche Therapie zum Beispiel gegen MRSA erforscht.
+- Eine solche Behandlung nennt man Phagentherapie.
+🔬 Besonderheit
+- Ihre hohe Spezifität kann nützliche Bakterien schonen.
+- Dafür muss der richtige Phage zum richtigen Bakterium gefunden werden.
+- Auch gegen Phagen können Bakterien Resistenzen entwickeln.
+Kleines Quiz
+1. Was infiziert ein Bakteriophage?
+A) Bakterien ✅
+B) Antibiotika
+C) Ausschließlich menschliche Zellen
+D) Mineralien
+2. Was geschieht bei einem lytischen Phagen?
+A) Die Bakterienzelle wird am Ende zerstört ✅
+B) Der Phage wird zum Antibiotikum
+C) Das Bakterium wird größer
+D) Nichts
+3. Warum sind Phagen für resistente Bakterien interessant?
+A) Sie können auch antibiotikaresistente Bakterien angreifen ✅
+B) Sie machen Antibiotika überflüssig
+C) Sie sind Bakterien
+D) Sie wirken gegen alle Viren
+Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance; Building the evidence for bacteriophage therapy.

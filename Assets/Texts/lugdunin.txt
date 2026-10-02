@@ -1,0 +1,34 @@
+Lugdunin – die Waffe aus dem Mikrobiom
+
+**Lugdunin ist ein natürlicher antibiotischer Stoff aus dem menschlichen Mikrobiom. Bestimmte Stämme von** ***Staphylococcus lugdunensis*** **produzieren ihn und können damit** ***S. aureus*** **zurückdrängen. Lugdunin wurde 2016 an der Universität Tübingen entdeckt.**
+👃 Wo entsteht Lugdunin?
+- *Lugdunin wird vom Bakterium S. lugdunensis* produziert.
+- *S. lugdunensis* lebt auf der Haut und in der Nase.
+- Dort konkurriert es mit anderen Mikroorganismen um Lebensraum.
+- Lugdunin verschafft *S. lugdunensis* einen Vorteil gegenüber bestimmten Konkurrenten.
+⚔️ Wirkung
+- Lugdunin kann *S. aureus* hemmen und abtöten.
+- Das gilt auch für antibiotikaresistente MRSA-Stämme.
+🛡️ Mehr als ein Antibiotikum
+- Lugdunin kann zusätzlich die angeborene Immunabwehr der Haut verstärken.
+- Unter anderem regt es Hautzellen zur Bildung körpereigener antimikrobieller Stoffe an.
+🔬 Besonderheit
+- Der Wirkstoff wurde in einem Bakterium des menschlichen Mikrobioms entdeckt.
+- Er wird erforscht, ist aber noch kein regulär eingesetztes Medikament.
+Kleines Quiz
+1. Wer produziert Lugdunin?
+A) Staphylococcus lugdunensis ✅
+B) Der Mensch selbst
+C) MRSA
+D) Ein Phage
+2. Gegen welches Bakterium kann Lugdunin wirken?
+A) Staphylococcus aureus ✅
+B) Nur Pflanzenzellen
+C) Ausschließlich Viren
+D) Gar keine Bakterien
+3. Ist Lugdunin bereits ein reguläres Medikament?
+A) Ja
+B) Nein, es wird noch erforscht ✅
+C) Nur gegen Grippe
+D) Nur als Impfstoff
+Quellen: Zipperer et al., Nature 2016 – Human commensals producing a novel antibiotic impair pathogen colonization; Bitschar et al., Nature Communications 2019.

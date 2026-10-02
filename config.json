@@ -1,0 +1,289 @@
+{
+  "Inhalte": {
+    "gutes_bakterium": {
+      "qrText": "gutes_bakterium",
+      "name": "Gute Bakterien – Staphylokokken",
+      "model": "gutes_bakterium.glb",
+      "text": "gutes_bakterium.txt",
+      "images": [
+        {
+          "file": "gutes_bakterium.webp",
+          "alt": "Mikroskopische Aufnahme kugelförmiger Staphylokokken",
+          "caption": "Staphylokokken. Bild: Jeremiah Shuster, Core Facility Tübingen Structural Microscopy, TSM, Arbeitsgruppe Geomikrobiologie."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Wo findet man Staphylokokken besonders häufig?",
+          "options": [
+            "Auf Haut und Schleimhäuten",
+            "Nur im Blut",
+            "Nur im Magen",
+            "Nur in Knochen"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Wie sehen Staphylokokken typischerweise aus?",
+          "options": [
+            "Kugelförmig und oft traubenartig",
+            "Spiralförmig",
+            "Würfelförmig",
+            "Lang und fadenförmig"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Macht eine Besiedlung mit Staphylokokken immer krank?",
+          "options": [
+            "Ja",
+            "Nein",
+            "Nur im Winter",
+            "Nur bei Erwachsenen"
+          ],
+          "correct": 1
+        }
+      ]
+    },
+    "krankheitserreger": {
+      "qrText": "krankheitserreger",
+      "name": "Krankheitserreger – *Staphylococcus aureus* wird gefährlich",
+      "model": "krankheitserreger.glb",
+      "text": "krankheitserreger.txt",
+      "images": [
+        {
+          "file": "krankheitserreger.webp",
+          "alt": "Kolonie von Staphylococcus aureus auf Blutagar",
+          "caption": "Kolonie von *Staphylococcus aureus* auf rotem Blutagar. Foto: Jörg Jäger / Universität Tübingen."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Wann kann S. aureus gefährlich werden?",
+          "options": [
+            "Wenn es tiefer ins Gewebe gelangt",
+            "Wenn es nur auf der Haut sitzt",
+            "Nur bei Kälte",
+            "Nur nachts"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Welche Erkrankung kann S. aureus verursachen?",
+          "options": [
+            "Abszesse",
+            "Ausschließlich Schnupfen",
+            "Nur Zahnschmerzen",
+            "Keine"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Sind kommensaler und pathogener S. aureus zwei verschiedene Arten?",
+          "options": [
+            "Ja",
+            "Nein",
+            "Nur im Krankenhaus",
+            "Nur bei MRSA"
+          ],
+          "correct": 1
+        }
+      ],
+      "source": "Quellen: CDC – Staphylococcus aureus Basics; MSD Manual – Staphylococcal Infections."
+    },
+    "mrsa": {
+      "qrText": "mrsa",
+      "name": "MRSA – der resistente Gegner",
+      "model": "mrsa.glb",
+      "text": "mrsa.txt",
+      "images": [
+        {
+          "file": "mrsa.webp",
+          "alt": "MRSA-Bakterien und weißes Blutkörperchen",
+          "caption": "Methicillin-resistente Staphylococcus aureus-Bakterien (gelb) und ein abgestorbenes weißes Blutkörperchen (rot). Rasterelektronenmikroskopische (REM) Aufnahme. Bild: National Institute of Allergy and Infectious Diseases (NIAID)/NIH."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Wofür steht das „R“ in MRSA?",
+          "options": [
+            "Resistent",
+            "Reaktiv",
+            "Riesig",
+            "Reproduzierend"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Warum ist MRSA schwieriger zu behandeln?",
+          "options": [
+            "Viele Antibiotika wirken nicht mehr",
+            "Es gibt gar keine Medikamente",
+            "MRSA ist ein Virus",
+            "Es lebt nur im Blut"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Was kann die Ausbreitung von Resistenzen begünstigen?",
+          "options": [
+            "Unnötiger oder falscher Antibiotikaeinsatz",
+            "Händewaschen",
+            "Schlaf",
+            "Kälte"
+          ],
+          "correct": 0
+        }
+      ],
+      "source": "Quellen: CDC – MRSA Basics; CDC – Laboratory Testing for MRSA; WHO – Antimicrobial Resistance."
+    },
+    "lugdunin": {
+      "qrText": "lugdunin",
+      "name": "Lugdunin – die Waffe aus dem Mikrobiom",
+      "model": "lugdunin.glb",
+      "text": "lugdunin.txt",
+      "images": [
+        {
+          "file": "lugdunin_molekuel.webp",
+          "alt": "Molekülstruktur von Lugdunin",
+          "caption": "Molekülstruktur von Lugdunin. Visualisierung: Michael Pelzer / Universität Tübingen."
+        },
+        {
+          "file": "lugdunin_nase.webp",
+          "alt": "Kampf im Nasenmikrobiom",
+          "caption": "Kampf im Nasenmikrobiom. *S. lugduensis* (beige) bekämpft den krankheitserregenden *S. aureus* (gelb) mit Hilfe von Lugdunin (lila) in der menschlichen Nase. Grafische Darstellung. Bild: Michael Pelzer / Universität Tübingen."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Wer produziert Lugdunin?",
+          "options": [
+            "Staphylococcus lugdunensis",
+            "Der Mensch selbst",
+            "MRSA",
+            "Ein Phage"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Gegen welches Bakterium kann Lugdunin wirken?",
+          "options": [
+            "Staphylococcus aureus",
+            "Nur Pflanzenzellen",
+            "Ausschließlich Viren",
+            "Gar keine Bakterien"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Ist Lugdunin bereits ein reguläres Medikament?",
+          "options": [
+            "Ja",
+            "Nein, es wird noch erforscht",
+            "Nur gegen Grippe",
+            "Nur als Impfstoff"
+          ],
+          "correct": 1
+        }
+      ],
+      "source": "Quellen: Zipperer et al., Nature 2016 – Human commensals producing a novel antibiotic impair pathogen colonization; Bitschar et al., Nature Communications 2019."
+    },
+    "phage": {
+      "qrText": "phage",
+      "name": "Phage – der Bakterienjäger",
+      "model": "phage.glb",
+      "text": "phage.txt",
+      "images": [
+        {
+          "file": "phage_infektion.webp",
+          "alt": "Bakteriophagen infizieren eine Staphylokokken-Zelle",
+          "caption": "Elektronenmikroskopische Aufnahme von Bakteriophagen, die eine Staphylokokken-Zelle infizieren. Das Erbgut der Phagen wird in die Bakterienzelle eingeschleust und programmiert die Bakterienzelle zur Produktion neuer Phagen um. Die neu gebildeten Phagen vermehren sich in der Zelle, bis diese schließlich platzt (Lyse). Dabei werden die Phagen freigesetzt und können weitere Bakterienzellen infizieren. Bild: Christian Beck / Anneli Vollert."
+        },
+        {
+          "file": "phage_k3.webp",
+          "alt": "Bakteriophage K3",
+          "caption": "Ein Bakteriophage (K3 Phage). Etwa 200nm hoch und somit etwa 350-mal dünner als ein menschliches Haar. Bild: Dr. Sandra Richter, Zentrum für Molekularbiologie der Pflanzen (ZMBP)/ Tübingen Structural Microscopy Core Facility (TSM). Kolorierung: Jonas Ritz/CMFI."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Was infiziert ein Bakteriophage?",
+          "options": [
+            "Bakterien",
+            "Antibiotika",
+            "Ausschließlich menschliche Zellen",
+            "Mineralien"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Was geschieht bei einem lytischen Phagen?",
+          "options": [
+            "Die Bakterienzelle wird am Ende zerstört",
+            "Der Phage wird zum Antibiotikum",
+            "Das Bakterium wird größer",
+            "Nichts"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Warum sind Phagen für resistente Bakterien interessant?",
+          "options": [
+            "Sie können auch antibiotikaresistente Bakterien angreifen",
+            "Sie machen Antibiotika überflüssig",
+            "Sie sind Bakterien",
+            "Sie wirken gegen alle Viren"
+          ],
+          "correct": 0
+        }
+      ],
+      "source": "Quellen: WHO Europe – Bacteriophages and their use in combating antimicrobial resistance; Building the evidence for bacteriophage therapy."
+    },
+    "antibiotikum": {
+      "qrText": "antibiotikum",
+      "name": "Antibiotikum – die klassische Waffe gegen Bakterien",
+      "model": "antibiotikum.glb",
+      "text": "antibiotikum.txt",
+      "images": [
+        {
+          "file": "antibiotikum.webp",
+          "alt": "Antibiotikakapseln",
+          "caption": "Antibiotikakapseln. Bild: Christina Victoria Craft / Unsplash."
+        }
+      ],
+      "quiz": [
+        {
+          "question": "Gegen was wirken Antibiotika?",
+          "options": [
+            "Gegen bakterielle Infektionen",
+            "Gegen alle Viren",
+            "Gegen jede Krankheit",
+            "Gegen Pilze und Viren gleichermaßen"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Warum helfen Antibiotika nicht gegen Grippe?",
+          "options": [
+            "Grippe wird durch Viren verursacht",
+            "Sie wirken nur nachts",
+            "Viren sind zu groß",
+            "Grippe ist ein Bakterium"
+          ],
+          "correct": 0
+        },
+        {
+          "question": "Was kann unnötiger Antibiotikaeinsatz fördern?",
+          "options": [
+            "Antibiotikaresistenzen",
+            "Neue Viren",
+            "Schnellere Wundheilung",
+            "Mehr rote Blutkörperchen"
+          ],
+          "correct": 0
+        }
+      ],
+      "source": "Quellen: CDC – Antibiotic Use; CDC – Antimicrobial Resistance; WHO – Antimicrobial Resistance."
+    }
+  }
+}

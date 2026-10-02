@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#f05f00" />
+  <title>BakterienInfo – IWM Tübingen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css?v=12" />
+  <script src="https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js"></script>
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <!-- Import-Map-Polyfill für iPadOS unter 16.4 (nur für lazy-geladenes viewer3d.js) -->
+  <script async src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <nav class="iwm-meta-nav" aria-label="Meta-Navigation">
+    <!-- <div class="iwm-container iwm-meta-inner">
+      <a href="https://iwm-tuebingen.de/de" target="_blank" rel="noopener">IWM Tübingen</a>
+      <a href="https://iwm-tuebingen.de/de/kontakt" target="_blank" rel="noopener">Kontakt</a>
+    </div> -->
+  </nav>
+
+  <header class="iwm-main-nav">
+    <div class="iwm-container iwm-nav-inner">
+      <!-- <a class="iwm-logo-link" href="#" aria-label="BakterienInfo Startseite">
+        <img src="./Assets/Images/fis-logo.svg" alt="Logo IWM Tübingen" class="iwm-logo" />
+      </a> -->
+      <div class="iwm-nav-actions">
+        <span class="iwm-nav-current">BakterienInfo</span>
+        <button id="rescanBtn" class="iwm-btn-outline iwm-btn-sm hidden" type="button">Neu scannen</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="iwm-main">
+    <!-- Willkommen -->
+    <section id="welcome" class="screen">
+      <div class="iwm-container iwm-section">
+        <!-- <p class="iwm-hero-kicker">Das Leibniz-Institut für Wissensmedien</p> -->
+        <h1 class="iwm-hero-title">
+          Bakterien <span class="iwm-text-orange">entdecken und verstehen</span>
+        </h1>
+        <p class="iwm-hero-lead">
+          Scanne den QR-Code an einer Plakette, um Informationen und ein interaktives 3D-Modell zu sehen.
+        </p>
+        <button id="startScanBtn" class="iwm-btn-outline" type="button">
+          QR-Code scannen
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6l-6 6"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Scanner -->
+    <section id="scanner" class="screen hidden">
+      <div class="iwm-container iwm-section">
+        <h2 class="iwm-section-title">QR-Code scannen</h2>
+        <div class="scanner-wrap">
+          <div id="qr-reader"></div>
+          <div class="scanner-feedback">
+            <p id="scanStatus" class="iwm-status">Halte den QR-Code in den Rahmen…</p>
+            <div id="scanPreview" class="scan-preview hidden" aria-live="polite">
+              <p class="scan-preview-label">Erkannt:</p>
+              <p id="scanDetectedName" class="scan-preview-name"></p>
+            </div>
+          </div>
+          <div class="scanner-actions">
+            <button id="confirmScanBtn" class="iwm-btn-outline" type="button" disabled>Inhalt anzeigen</button>
+            <button id="cancelScanBtn" class="iwm-btn-outline" type="button">Abbrechen</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Loading -->
+    <section id="loading" class="screen hidden">
+      <div class="iwm-container iwm-section iwm-center">
+        <div class="spinner"></div>
+        <p id="loadingMsg" class="iwm-status">Lade Daten…</p>
+      </div>
+    </section>
+
+    <!-- Error -->
+    <section id="error" class="screen hidden">
+      <div class="iwm-container iwm-section">
+        <div class="iwm-card iwm-card-error">
+          <h2 class="iwm-section-title">Hoppla</h2>
+          <p id="errorMsg" class="iwm-body"></p>
+          <button id="errorBackBtn" class="iwm-btn-outline" type="button">Zurück</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fischansicht -->
+    <section id="fishView" class="screen hidden">
+      <div class="iwm-container iwm-section">
+        <p class="iwm-hero-kicker" id="fishSubline"></p>
+        <h2 id="fishTitle" class="iwm-page-title"></h2>
+
+        <div class="fish-layout">
+          <aside class="iwm-model-aside">
+            <h3 class="iwm-section-title">3D-Modell</h3>
+            <div class="iwm-model-panel">
+              <div id="modelContainer" class="model-container">
+                <div class="model-overlay-hint" id="modelOverlayHint">
+                  <span>↻ Drehen</span><span>·</span><span>🤏 Zoomen</span>
+                </div>
+              </div>
+              <div class="model-controls">
+                <button id="resetViewBtn" class="iwm-btn-outline iwm-btn-sm" type="button">⟲ Ansicht zurücksetzen</button>
+              </div>
+            </div>
+          </aside>
+
+          <article class="iwm-content">
+            <h3 class="iwm-section-title">Informationen</h3>
+            <div id="textContent" class="iwm-markdown"></div>
+            <div class="iwm-source">
+              <p id="sourceText" class="hidden"></p>
+              <a id="sourceLink" href="#" target="_blank" rel="noopener">Originalquelle öffnen ↗</a>
+            </div>
+
+            <section id="quizSection" class="fish-quiz hidden" aria-labelledby="quizHeading">
+              <h3 id="quizHeading" class="iwm-section-title">Kleines Quiz</h3>
+              <p class="fish-quiz-intro">Was hast du behalten? Teste dein Wissen zum Thema.</p>
+              <div id="quizContent" class="fish-quiz-questions"></div>
+              <div id="quizResult" class="fish-quiz-result hidden" aria-live="polite"></div>
+            </section>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="iwm-footer">
+    <div class="iwm-container iwm-footer-inner">
+      powered by <img src="./Assets/Images/fis-logo.png" alt="Logo IWM Tübingen" class="iwm-logo" />
+      <!-- <a href="https://iwm-tuebingen.de/de" target="_blank" rel="noopener">iwm-tuebingen.de</a> -->
+      <!-- <span class="iwm-footer-sep">|</span> -->
+      <!-- <a href="https://iwm-tuebingen.de/de/impressum" target="_blank" rel="noopener">Impressum</a> -->
+      <!-- <span class="iwm-footer-sep">|</span> -->
+      <!-- <a href="https://iwm-tuebingen.de/de/datenschutz" target="_blank" rel="noopener">Datenschutz</a> -->
+    </div>
+  </footer>
+
+  <script src="./app.js?v=16" defer></script>
+</body>
+</html>
