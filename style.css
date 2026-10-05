@@ -158,42 +158,11 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   gap: 0;
 }
 
-.brand-mark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-.brand-dot {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  background: var(--fg);
-  flex-shrink: 0;
-}
-
-.brand-c {
-  width: 5.5rem;
-  height: 5.5rem;
-  border: 0.55rem solid var(--lime);
-  border-right-color: transparent;
-  border-radius: 50%;
-  position: relative;
-  transform: rotate(-20deg);
-}
-
-.brand-c::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 50%;
-  background: var(--fg);
-  transform: translate(-50%, -50%) rotate(20deg);
+.brand-hero {
+  display: block;
+  width: min(22rem, 88vw);
+  height: auto;
+  margin: 0 auto 1.75rem;
 }
 
 .iwm-hero-kicker {
