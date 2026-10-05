@@ -1,0 +1,12 @@
+{
+  "appId": "de.iwm.bakterieninfo",
+  "appName": "BakterienInfo",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#ffffff"
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

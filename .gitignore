@@ -1,0 +1,17 @@
+node_modules/
+www/
+android/.gradle/
+android/app/build/
+android/build/
+android/captures/
+android/.idea/
+android/local.properties
+.idea/
+*.iml
+.DS_Store
+dist/
+*.apk
+*.aab
+*.keystore
+.cxx/
+.externalNativeBuild/
