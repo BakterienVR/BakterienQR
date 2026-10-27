@@ -3,6 +3,7 @@ let config = null;
 let qrScanner = null;
 let viewer3d = null;
 let activeQuiz = null;
+let quizFinished = false;
 
 const VIEWER_MODULE_URL = "./viewer3d.js?v=1";
 
@@ -12,6 +13,7 @@ const screens = {
   loading: document.getElementById("loading"),
   error: document.getElementById("error"),
   fishView: document.getElementById("fishView"),
+  quizView: document.getElementById("quizView"),
 };
 
 const rescanBtn = document.getElementById("rescanBtn");
@@ -19,6 +21,8 @@ const scanStatus = document.getElementById("scanStatus");
 const scanPreview = document.getElementById("scanPreview");
 const scanDetectedName = document.getElementById("scanDetectedName");
 const confirmScanBtn = document.getElementById("confirmScanBtn");
+const quizEntry = document.getElementById("quizEntry");
+const openQuizBtn = document.getElementById("openQuizBtn");
 
 let scannedText = null;
 
@@ -51,11 +55,17 @@ function showModelUnavailable(msg) {
 }
 
 // ───── Screen Helper ─────
+function updateRescanVisibility(screenName) {
+  const showOnInfo = screenName === "fishView" || screenName === "loading" || screenName === "error";
+  const showOnQuiz = screenName === "quizView" && quizFinished;
+  rescanBtn.classList.toggle("hidden", !(showOnInfo || showOnQuiz));
+}
+
 function showScreen(name) {
   for (const [k, el] of Object.entries(screens)) {
     el.classList.toggle("hidden", k !== name);
   }
-  rescanBtn.classList.toggle("hidden", name === "welcome" || name === "scanner");
+  updateRescanVisibility(name);
 }
 
 // ───── Config laden ─────
@@ -215,7 +225,8 @@ async function displayContent(content) {
 
     renderInfoText(textRaw, content.images);
     activeQuiz = content.quiz;
-    renderQuiz(activeQuiz);
+    quizFinished = false;
+    prepareQuizEntry(activeQuiz);
 
     const sourceBox = document.querySelector(".iwm-source");
     const sourceText = document.getElementById("sourceText");
@@ -368,19 +379,35 @@ function renderInfoText(textRaw, images) {
   linkifyContent(container);
 }
 
+function prepareQuizEntry(quiz) {
+  const hasQuiz = Boolean(quiz?.length);
+  quizEntry.classList.toggle("hidden", !hasQuiz);
+  document.getElementById("quizContent").innerHTML = "";
+  document.getElementById("quizResult").classList.add("hidden");
+  document.getElementById("quizResult").innerHTML = "";
+}
+
+function openQuiz() {
+  if (!activeQuiz?.length) return;
+  quizFinished = false;
+  document.getElementById("quizTitle").textContent = "Kleines Quiz";
+  renderQuiz(activeQuiz);
+  showScreen("quizView");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function renderQuiz(quiz) {
-  const section = document.getElementById("quizSection");
   const container = document.getElementById("quizContent");
   const resultEl = document.getElementById("quizResult");
 
   if (!quiz?.length) {
-    section.classList.add("hidden");
     container.innerHTML = "";
     resultEl.classList.add("hidden");
     return;
   }
 
-  section.classList.remove("hidden");
+  quizFinished = false;
+  updateRescanVisibility("quizView");
   resultEl.classList.add("hidden");
   resultEl.innerHTML = "";
 
@@ -432,6 +459,8 @@ function renderQuiz(quiz) {
       feedbackEl.classList.add(isCorrect ? "is-correct" : "is-wrong");
 
       if (state.answered === quiz.length) {
+        quizFinished = true;
+        updateRescanVisibility("quizView");
         showQuizResult(resultEl, state.correct, quiz.length);
       }
     });
@@ -446,7 +475,7 @@ function showQuizResult(el, correct, total) {
   } else if (correct >= total / 2) {
     message = "Gut gemacht! Lies die Infos noch einmal für die Details.";
   } else {
-    message = "Noch Luft nach oben – schau dir die Abschnitte oben noch einmal an.";
+    message = "Noch Luft nach oben – schau dir die Infos noch einmal an.";
   }
 
   el.innerHTML = `
@@ -497,6 +526,8 @@ document.getElementById("errorBackBtn").addEventListener("click", async () => {
 document.getElementById("resetViewBtn").addEventListener("click", () => {
   viewer3d?.resetView();
 });
+
+openQuizBtn.addEventListener("click", openQuiz);
 
 // ───── Start ─────
 window.addEventListener("DOMContentLoaded", async () => {

@@ -580,7 +580,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 /* ─── Quiz ─── */
-.fish-quiz {
+.quiz-entry {
   margin-top: 2.5rem;
   padding-top: 1.5rem;
   border-top: 3px solid var(--lime);

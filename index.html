@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
   <title>BakterienInfo – Science Arcade</title>
-  <link rel="stylesheet" href="./style.css?v=17" />
+  <link rel="stylesheet" href="./style.css?v=18" />
   <script src="./vendor/utif.js"></script>
   <script src="./vendor/html5-qrcode.min.js" defer></script>
   <script src="./vendor/marked.min.js" defer></script>
@@ -128,14 +128,21 @@
               <a id="sourceLink" href="#" target="_blank" rel="noopener">Originalquelle öffnen ↗</a>
             </div>
 
-            <section id="quizSection" class="fish-quiz hidden" aria-labelledby="quizHeading">
-              <h3 id="quizHeading" class="iwm-section-title">Kleines Quiz</h3>
-              <p class="fish-quiz-intro">Was hast du behalten? Teste dein Wissen zum Thema.</p>
-              <div id="quizContent" class="fish-quiz-questions"></div>
-              <div id="quizResult" class="fish-quiz-result hidden" aria-live="polite"></div>
-            </section>
+            <div id="quizEntry" class="quiz-entry hidden">
+              <button id="openQuizBtn" class="iwm-btn-outline" type="button">Ein kleines Quiz</button>
+            </div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quizView" class="screen hidden">
+      <div class="iwm-container iwm-section">
+        <h2 id="quizTitle" class="iwm-page-title">Kleines Quiz</h2>
+        <p class="fish-quiz-intro">Was hast du behalten? Teste dein Wissen zum Thema.</p>
+        <div id="quizContent" class="fish-quiz-questions"></div>
+        <div id="quizResult" class="fish-quiz-result hidden" aria-live="polite"></div>
       </div>
     </section>
   </main>
@@ -151,6 +158,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=18" defer></script>
+  <script src="./app.js?v=20" defer></script>
 </body>
 </html>
