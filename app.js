@@ -440,12 +440,16 @@ function setupScrollHint() {
   scrollHintTimer = setTimeout(hideScrollHint, 5000);
 }
 
+let quizState = null;
+
 function prepareQuizEntry(quiz) {
   const hasQuiz = Boolean(quiz?.length);
   quizEntry.classList.toggle("hidden", !hasQuiz);
   document.getElementById("quizContent").innerHTML = "";
   document.getElementById("quizResult").classList.add("hidden");
   document.getElementById("quizResult").innerHTML = "";
+  document.getElementById("quizProgress").textContent = "";
+  quizState = null;
 }
 
 function openQuiz() {
@@ -453,86 +457,115 @@ function openQuiz() {
   quizFinished = false;
   hideScrollHint();
   document.getElementById("quizTitle").textContent = "Kleines Quiz";
-  renderQuiz(activeQuiz);
+  startQuiz(activeQuiz);
   showScreen("quizView");
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function renderQuiz(quiz) {
-  const container = document.getElementById("quizContent");
-  const resultEl = document.getElementById("quizResult");
+function startQuiz(quiz) {
+  if (!quiz?.length) return;
 
-  if (!quiz?.length) {
-    container.innerHTML = "";
-    resultEl.classList.add("hidden");
-    return;
-  }
-
+  quizState = {
+    quiz,
+    index: 0,
+    correct: 0,
+    locked: false,
+  };
   quizFinished = false;
   updateRescanVisibility("quizView");
+
+  const intro = document.getElementById("quizIntro");
+  const resultEl = document.getElementById("quizResult");
+  intro.classList.remove("hidden");
   resultEl.classList.add("hidden");
   resultEl.innerHTML = "";
 
-  const state = { answered: 0, correct: 0 };
+  showQuizQuestion();
+}
 
-  container.innerHTML = quiz.map((item, qIndex) => `
-    <div class="quiz-question" data-q="${qIndex}">
+function showQuizQuestion() {
+  const { quiz, index } = quizState;
+  const container = document.getElementById("quizContent");
+  const resultEl = document.getElementById("quizResult");
+  const progress = document.getElementById("quizProgress");
+  const intro = document.getElementById("quizIntro");
+  const item = quiz[index];
+
+  quizState.locked = false;
+  resultEl.classList.add("hidden");
+  resultEl.innerHTML = "";
+  intro.classList.toggle("hidden", index > 0);
+  progress.textContent = `Frage ${index + 1} von ${quiz.length}`;
+  window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+
+  container.innerHTML = `
+    <div class="quiz-question quiz-question-single" data-q="${index}">
       <p class="quiz-question-text">
-        <span class="quiz-number">${qIndex + 1}.</span>
         ${escapeHtml(item.question)}
       </p>
       <div class="quiz-options" role="group" aria-label="Antwortmöglichkeiten">
         ${item.options.map((option, oIndex) => `
-          <button type="button" class="quiz-option" data-q="${qIndex}" data-o="${oIndex}">
+          <button type="button" class="quiz-option" data-o="${oIndex}">
             ${escapeHtml(option)}
           </button>
         `).join("")}
       </div>
-      <p class="quiz-feedback hidden" data-feedback="${qIndex}"></p>
+      <p class="quiz-feedback hidden" data-feedback></p>
+      <button type="button" class="iwm-btn-outline quiz-next-btn hidden" id="quizNextBtn">
+        ${index + 1 < quiz.length ? "Nächste Frage" : "Ergebnis anzeigen"}
+      </button>
     </div>
-  `).join("");
+  `;
+
+  const questionEl = container.querySelector(".quiz-question");
+  const feedbackEl = container.querySelector("[data-feedback]");
+  const nextBtn = document.getElementById("quizNextBtn");
 
   container.querySelectorAll(".quiz-option").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const qIndex = Number(btn.dataset.q);
-      const oIndex = Number(btn.dataset.o);
-      const question = quiz[qIndex];
-      const questionEl = container.querySelector(`.quiz-question[data-q="${qIndex}"]`);
-      const feedbackEl = container.querySelector(`[data-feedback="${qIndex}"]`);
-      const options = questionEl.querySelectorAll(".quiz-option");
+      if (quizState.locked) return;
+      quizState.locked = true;
 
-      if (questionEl.classList.contains("answered")) return;
+      const oIndex = Number(btn.dataset.o);
+      const isCorrect = oIndex === item.correct;
+      if (isCorrect) quizState.correct += 1;
 
       questionEl.classList.add("answered");
-      state.answered += 1;
-      const isCorrect = oIndex === question.correct;
-      if (isCorrect) state.correct += 1;
-
-      options.forEach((opt, idx) => {
+      container.querySelectorAll(".quiz-option").forEach((opt, idx) => {
         opt.disabled = true;
-        if (idx === question.correct) opt.classList.add("correct");
+        if (idx === item.correct) opt.classList.add("correct");
         else if (idx === oIndex) opt.classList.add("wrong");
       });
 
       feedbackEl.textContent = isCorrect
-        ? `✓ Richtig! ${question.explanation || ""}`
-        : `✗ Leider falsch. ${question.explanation || ""}`;
+        ? `✓ Richtig! ${item.explanation || ""}`
+        : `✗ Leider falsch. ${item.explanation || ""}`;
       feedbackEl.classList.remove("hidden");
       feedbackEl.classList.add(isCorrect ? "is-correct" : "is-wrong");
-
-      if (state.answered === quiz.length) {
-        quizFinished = true;
-        updateRescanVisibility("quizView");
-        showQuizResult(resultEl, state.correct, quiz.length);
-      }
+      nextBtn.classList.remove("hidden");
     });
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (quizState.index + 1 < quizState.quiz.length) {
+      quizState.index += 1;
+      showQuizQuestion();
+    } else {
+      showQuizResult(quizState.correct, quizState.quiz.length);
+    }
   });
 }
 
-function showQuizResult(el, correct, total) {
+function showQuizResult(correct, total) {
+  const container = document.getElementById("quizContent");
+  const resultEl = document.getElementById("quizResult");
+  const progress = document.getElementById("quizProgress");
+  const intro = document.getElementById("quizIntro");
   const pct = Math.round((correct / total) * 100);
+  const allCorrect = correct === total;
+
   let message;
-  if (correct === total) {
+  if (allCorrect) {
     message = "Perfekt! Du kennst dich bestens aus.";
   } else if (correct >= total / 2) {
     message = "Gut gemacht! Lies die Infos noch einmal für die Details.";
@@ -540,16 +573,26 @@ function showQuizResult(el, correct, total) {
     message = "Noch Luft nach oben – schau dir die Infos noch einmal an.";
   }
 
-  el.innerHTML = `
+  quizFinished = true;
+  updateRescanVisibility("quizView");
+  intro.classList.add("hidden");
+  progress.textContent = "Ergebnis";
+  container.innerHTML = "";
+  window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+
+  resultEl.innerHTML = `
     <p class="quiz-score">${correct} von ${total} richtig (${pct}%)</p>
     <p class="quiz-score-msg">${message}</p>
-    <button type="button" class="iwm-btn-outline iwm-btn-sm" id="quizRetryBtn">Nochmal versuchen</button>
+    ${allCorrect ? "" : '<button type="button" class="iwm-btn-outline" id="quizRetryBtn">Quiz nochmal machen</button>'}
   `;
-  el.classList.remove("hidden");
+  resultEl.classList.remove("hidden");
 
-  document.getElementById("quizRetryBtn").addEventListener("click", () => {
-    if (activeQuiz) renderQuiz(activeQuiz);
-  });
+  const retryBtn = document.getElementById("quizRetryBtn");
+  if (retryBtn) {
+    retryBtn.addEventListener("click", () => {
+      if (activeQuiz) startQuiz(activeQuiz);
+    });
+  }
 }
 
 function escapeHtml(s) {

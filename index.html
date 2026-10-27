@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#000000" />
   <title>BakterienInfo – Science Arcade</title>
-  <link rel="stylesheet" href="./style.css?v=19" />
+  <link rel="stylesheet" href="./style.css?v=20" />
   <script src="./vendor/utif.js"></script>
   <script src="./vendor/html5-qrcode.min.js" defer></script>
   <script src="./vendor/marked.min.js" defer></script>
@@ -143,9 +143,10 @@
 
     <!-- Quiz -->
     <section id="quizView" class="screen hidden">
-      <div class="iwm-container iwm-section">
+      <div class="iwm-container iwm-section quiz-page">
         <h2 id="quizTitle" class="iwm-page-title">Kleines Quiz</h2>
-        <p class="fish-quiz-intro">Was hast du behalten? Teste dein Wissen zum Thema.</p>
+        <p id="quizProgress" class="quiz-progress" aria-live="polite"></p>
+        <p id="quizIntro" class="fish-quiz-intro">Was hast du behalten? Teste dein Wissen zum Thema.</p>
         <div id="quizContent" class="fish-quiz-questions"></div>
         <div id="quizResult" class="fish-quiz-result hidden" aria-live="polite"></div>
       </div>
@@ -163,6 +164,6 @@
     </div>
   </footer>
 
-  <script src="./app.js?v=21" defer></script>
+  <script src="./app.js?v=22" defer></script>
 </body>
 </html>

@@ -646,6 +646,18 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   border-top: 3px solid var(--lime);
 }
 
+.quiz-page {
+  max-width: 40rem;
+}
+
+.quiz-progress {
+  color: var(--lime);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: -1rem 0 1rem;
+}
+
 .fish-quiz-intro {
   color: var(--muted);
   margin-bottom: 1.25rem;
@@ -663,7 +675,17 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   background: var(--panel);
 }
 
+.quiz-question-single {
+  min-height: 16rem;
+}
+
 .quiz-question.answered { background: #050505; }
+
+.quiz-next-btn {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+}
 
 .quiz-question-text {
   font-weight: 700;
