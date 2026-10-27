@@ -237,16 +237,19 @@ async function displayContent(content) {
     sourceBox.classList.toggle("hidden", !content.source);
 
     showScreen("fishView");
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    requestAnimationFrame(() => setupScrollHint());
 
     try {
       const viewer = await loadViewer3d();
       const model = await viewer.loadModel(`Assets/Models/${content.model}`);
       viewer.setupScene(model);
 
-      setTimeout(() => {
-        const hint = document.getElementById("modelOverlayHint");
-        if (hint) hint.classList.add("fade-out");
-      }, 4000);
+      const modelHint = document.getElementById("modelOverlayHint");
+      if (modelHint) {
+        modelHint.classList.remove("fade-out");
+        setTimeout(() => modelHint.classList.add("fade-out"), 4000);
+      }
     } catch (modelErr) {
       console.error("3D-Modell konnte nicht geladen werden:", modelErr);
       showModelUnavailable(
@@ -350,15 +353,20 @@ function renderInfoText(textRaw, images) {
   const { intro, sections } = splitMarkdownSections(prepareInfoText(textRaw));
 
   if (!sections.length) {
-    container.innerHTML = `${mediaHtml}<div class="iwm-markdown">${parseMarkdown(textRaw)}</div>`;
+    container.innerHTML = `<div class="iwm-markdown">${parseMarkdown(textRaw)}</div>${mediaHtml}`;
     linkifyContent(container);
     return;
   }
 
-  const parts = [mediaHtml, '<div class="fish-text-accordion">'];
+  // Intro first so text peeks below the model before large images
+  const parts = ['<div class="fish-text-accordion">'];
 
   if (intro) {
     parts.push(`<div class="fish-text-intro iwm-markdown">${parseMarkdown(intro)}</div>`);
+  }
+
+  if (mediaHtml) {
+    parts.push(mediaHtml);
   }
 
   sections.forEach((section, index) => {
@@ -379,6 +387,59 @@ function renderInfoText(textRaw, images) {
   linkifyContent(container);
 }
 
+let scrollHintTimer = null;
+let scrollHintHandler = null;
+
+function clearScrollHintListeners() {
+  if (scrollHintTimer) {
+    clearTimeout(scrollHintTimer);
+    scrollHintTimer = null;
+  }
+  if (scrollHintHandler) {
+    window.removeEventListener("scroll", scrollHintHandler);
+    scrollHintHandler = null;
+  }
+}
+
+function hideScrollHint() {
+  clearScrollHintListeners();
+  const hint = document.getElementById("scrollHint");
+  const fade = document.querySelector("#fishView .scroll-fade");
+  if (hint) {
+    hint.classList.add("fade-out");
+    setTimeout(() => {
+      if (hint.classList.contains("fade-out")) hint.classList.add("hidden");
+    }, 500);
+  }
+  if (fade) fade.classList.add("fade-out");
+}
+
+function setupScrollHint() {
+  clearScrollHintListeners();
+  const hint = document.getElementById("scrollHint");
+  const fade = document.querySelector("#fishView .scroll-fade");
+  if (!hint) return;
+
+  const pageTooShort = document.documentElement.scrollHeight <= window.innerHeight + 80;
+  if (pageTooShort) {
+    hint.classList.add("hidden");
+    if (fade) {
+      fade.classList.add("hidden");
+      fade.classList.remove("fade-out");
+    }
+    return;
+  }
+
+  hint.classList.remove("hidden", "fade-out");
+  if (fade) fade.classList.remove("hidden", "fade-out");
+
+  scrollHintHandler = () => {
+    if (window.scrollY > 24) hideScrollHint();
+  };
+  window.addEventListener("scroll", scrollHintHandler, { passive: true });
+  scrollHintTimer = setTimeout(hideScrollHint, 5000);
+}
+
 function prepareQuizEntry(quiz) {
   const hasQuiz = Boolean(quiz?.length);
   quizEntry.classList.toggle("hidden", !hasQuiz);
@@ -390,6 +451,7 @@ function prepareQuizEntry(quiz) {
 function openQuiz() {
   if (!activeQuiz?.length) return;
   quizFinished = false;
+  hideScrollHint();
   document.getElementById("quizTitle").textContent = "Kleines Quiz";
   renderQuiz(activeQuiz);
   showScreen("quizView");
